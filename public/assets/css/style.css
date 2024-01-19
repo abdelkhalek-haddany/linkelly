@@ -1,0 +1,36 @@
+.add-distination-btn {
+  border: 2px solid transparent;
+  background-color: #183258;
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px 20px;
+}
+.add-distination-btn:hover {
+  border-color: #183258;
+  background-color: #fff;
+  color: #183258;
+}
+
+.add-distination-container {
+  margin-bottom: 30px;
+  text-align: right;
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+}
+.form-actions button {
+  padding: 8px 30px;
+}
+
+/*# sourceMappingURL=style.css.map */
