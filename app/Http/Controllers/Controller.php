@@ -15,20 +15,21 @@ class Controller extends BaseController
 
     public function welcome()
     {
-        return redirect()->route('links.index');
+        return view('pages.user.links.index');
+        // return redirect()->route('links.index');
 
-        try {
-            if (Auth::check()) {
-                // if (Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'super-admin') {
-                //     return redirect()->route('pages.admin.dashboard');
-                // } else {
-                return redirect()->route('pages.links.index');
-                // }
-            } else {
-                return redirect()->route('login');
-            }
-        } catch (Exception $e) {
-            return redirect()->route('welcome');
-        }
+        // try {
+        //     if (Auth::check()) {
+        //         // if (Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'super-admin') {
+        //         //     return redirect()->route('pages.admin.dashboard');
+        //         // } else {
+        //         return redirect()->route('pages.links.index');
+        //         // }
+        //     } else {
+        //         return redirect()->route('login');
+        //     }
+        // } catch (Exception $e) {
+        //     return redirect()->route('welcome');
+        // }
     }
 }
