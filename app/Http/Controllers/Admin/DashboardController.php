@@ -12,10 +12,10 @@ class DashboardController extends Controller
     {
         try {
             if (Auth::check()) {
-                if (Auth::user()->user_type == 'admin') {
-                    return route('admin.dashboard');
+                if (Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'super-admin') {
+                    return redirect()->route('pages.admin.dashboard');
                 } else {
-                    return route('user.dashboard');
+                    return redirect()->route('pages.user.dashboard');
                 }
             } else {
                 return redirect()->route('login');
@@ -27,7 +27,7 @@ class DashboardController extends Controller
     public function admin_dashboard()
     {
         try {
-            if (Auth::user()->user_type == 'admin') {
+            if (Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'super-admin') {
                 return view('pages.admin.dashboard');
             } else {
                 return redirect()->route('welcome');
@@ -40,7 +40,7 @@ class DashboardController extends Controller
     public function user_dashboard()
     {
         try {
-            if (Auth::user()->user_type == 'admin') {
+            if (Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'super-admin') {
                 return view('pages.user.dashboard');
             } else {
                 return redirect()->route('welcome');

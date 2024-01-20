@@ -5,6 +5,7 @@ namespace App\Http\Controllers\SupperAdmin;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -12,6 +13,8 @@ use Illuminate\Support\Str;
 
 class UsersController extends Controller
 {
+    use RegistersUsers;
+
     public function index()
     {
         if ($_GET) {
@@ -34,29 +37,30 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
-        try {
-            if ($request->avatar) {
-                $avatar = UploadImage('uploads/users', $request->avatar);
-            } else {
-                $avatar = "";
-            }
+        // try {
+            // if ($request->avatar) {
+            //     $avatar = UploadImage('uploads/users', $request->avatar);
+            // } else {
+            //     $avatar = "";
+            // }
             $user = new  User();
-            $user->name = $request->name;
-            // $user->address = $request->address;
+            $user->first_name = $request->first_name;
+            $user->last_name = $request->last_name;
             $user->phone = $request->phone;
-            // $user->user_type = $request->type;
             $user->user_type = $request->user_type;
-            $user->avatar = $avatar;
-            $user->slugID = Str::slug($request->name . '_' . now());
-            // $user->city = $request->city;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
             $user->save();
 
+
+            if (!Auth::check()) {
+                $this->guard()->login($user);
+                return redirect()->route('welcome');
+            }
             return redirect()->route('admin.users.index')->with(['success' => __('pages/admin/messages.saved')]);
-        } catch (\Exception $ex) {
-            return redirect()->back()->with(['error' => __('pages/admin/messages.error')]);
-        }
+        // } catch (\Exception $ex) {
+        //     return redirect()->back()->with(['error' => __('pages/admin/messages.error')]);
+        // }
     }
 
     public function edit($user)
@@ -71,19 +75,18 @@ class UsersController extends Controller
         try {
             if (!$user) return redirect()->back()->with(['error' => __('pages/admin/messages.error')]);
 
-            if ($request->avatar) {
-                $avatar = UploadImage('uploads/users', $request->avatar);
-            } else {
-                $avatar = "";
-            }
+            // if ($request->avatar) {
+            //     $avatar = UploadImage('uploads/users', $request->avatar);
+            // } else {
+            //     $avatar = "";
+            // }
 
             $user->first_name = $request->first_name;
             $user->last_name = $request->last_name;
             $user->phone = $request->phone;
-            // $user->user_type = $request->type;
-            $user->user_type = $request->type;
-            $user->avatar = $avatar;
-            $user->slugID = Str::slug($request->name . '_' . now());
+            $user->user_type = $request->user_type;
+            // $user->avatar = $avatar;
+            // $user->slugID = Str::slug($request->name . '_' . now());
             // $user->city = $request->city;
             $user->email = $request->email;
             if ($request->password != null)

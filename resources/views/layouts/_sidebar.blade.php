@@ -95,7 +95,6 @@
             </li>
         </ul>
         
-
         {{-- <div class="sidebar-cta">
             <div class="sidebar-cta-content">
                 <strong class="d-inline-block mb-2">Upgrade to Pro</strong>
