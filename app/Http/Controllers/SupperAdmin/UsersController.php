@@ -52,12 +52,12 @@ class UsersController extends Controller
             $user->password = Hash::make($request->password);
             $user->save();
 
-
-            if (!Auth::check()) {
-                $this->guard()->login($user);
-                return redirect()->route('welcome');
-            }
-            return redirect()->route('admin.users.index')->with(['success' => __('pages/admin/messages.saved')]);
+            // if (!Auth::check()) {
+            //     Auth::attempt(array('email' => $user->email, 'password' => $user->password));
+            //     $this->guard()->login($user);
+            //     return redirect()->route('welcome');
+            // }
+            return redirect()->route('users.index')->with(['success' => __('pages/admin/messages.saved')]);
         // } catch (\Exception $ex) {
         //     return redirect()->back()->with(['error' => __('pages/admin/messages.error')]);
         // }
@@ -72,7 +72,7 @@ class UsersController extends Controller
 
     public function update(Request $request, User $user)
     {
-        try {
+        // try {
             if (!$user) return redirect()->back()->with(['error' => __('pages/admin/messages.error')]);
 
             // if ($request->avatar) {
@@ -92,10 +92,10 @@ class UsersController extends Controller
             if ($request->password != null)
                 $user->password = Hash::make($request->password);
             $user->update();
-            return redirect()->route('admin.users.index')->with(['success' => __('pages/admin/messages.updated')]);
-        } catch (\Exception $ex) {
-            return redirect()->back()->with(['error' => __('pages/admin/messages.error')]);
-        }
+            return redirect()->route('users.index')->with(['success' => __('pages/admin/messages.updated')]);
+        // } catch (\Exception $ex) {
+        //     return redirect()->back()->with(['error' => __('pages/admin/messages.error')]);
+        // }
     }
 
 
@@ -104,9 +104,9 @@ class UsersController extends Controller
         try {
             $user = User::where('id', $request->user_id)->get()->first();
             $user->update(['user_type' => $request->role]);
-            return redirect()->route('admin.users.index')->with(['success' => __('pages/admin/messages.updated')]);
+            return redirect()->route('users.index')->with(['success' => __('pages/admin/messages.updated')]);
         } catch (\Exception $ex) {
-            return redirect()->route('admin.users.index')->with(['success' => __('pages/admin/messages.error')]);
+            return redirect()->route('users.index')->with(['success' => __('pages/admin/messages.error')]);
         }
     }
 
@@ -116,7 +116,7 @@ class UsersController extends Controller
         if ($user) {
             $user->delete();
             return true;
-            return redirect()->route('admin.users.index')->with(['success' => __('pages/admin/messages.deleted'), 200]);
+            return redirect()->route('users.index')->with(['success' => __('pages/admin/messages.deleted'), 200]);
         }
     }
 
@@ -126,6 +126,6 @@ class UsersController extends Controller
         $user->status = $status;
         $user->update();
 
-        return redirect()->route('admin.users.index')->with(['success' => __('pages/admin/messages.status_changed')]);
+        return redirect()->route('users.index')->with(['success' => __('pages/admin/messages.status_changed')]);
     }
 }

@@ -12,11 +12,10 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
-
     public function welcome()
     {
-        return view('pages.user.links.index');
-        // return redirect()->route('links.index');
+        // return view('pages.user.links.index');
+        return redirect()->route('dashboard');
 
         // try {
         //     if (Auth::check()) {

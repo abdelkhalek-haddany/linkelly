@@ -1,4 +1,4 @@
-<script src="assets/js/js/app.js"></script>
+<script src="{{ asset('assets/js/js/app.js') }}"></script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {

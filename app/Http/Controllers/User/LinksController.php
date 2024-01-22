@@ -27,6 +27,10 @@ class LinksController extends Controller
         }
     }
 
+
+    public function create(){
+        return view('pages.user.links.create');
+    }
     function generateRandomStringId($length = 10)
     {
         $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';

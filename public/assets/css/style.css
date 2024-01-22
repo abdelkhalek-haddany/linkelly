@@ -33,4 +33,40 @@
   padding: 8px 30px;
 }
 
+.options {
+  color: #555 !important;
+  font-size: 16px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+}
+.options a {
+  color: #555;
+}
+.options .dropdown::marker {
+  display: none !important;
+  opacity: 0 !important;
+}
+.options .nav-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.options .nav-link::after {
+  display: none;
+}
+.options .dropdown-menu li {
+  padding: 3px 0;
+}
+.options .dropdown-menu li.booster a {
+  color: yellow;
+}
+.options .dropdown-menu li.on-admar a {
+  color: #183258;
+}
+.options .dropdown-menu li i {
+  margin-right: 12px;
+}
+
 /*# sourceMappingURL=style.css.map */
