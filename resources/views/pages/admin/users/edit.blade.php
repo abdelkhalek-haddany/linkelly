@@ -19,7 +19,10 @@
                             <div class="card-body row">
                                 <select name="user_type" id="user_type" class="input">
                                     <option value="user" @if ($user->user_type == 'user') selected @endif>User</option>
-                                    <option value="admin" @if ($user->user_type == 'admin') selected @endif>Admin</option>
+                                    @if (Auth::user()->user_type == 'super-admin')
+                                        <option value="admin" @if ($user->user_type == 'admin') selected @endif>Admin
+                                        </option>
+                                    @endif
                                 </select>
                                 @if ($errors->has('user_type'))
                                     <span class="text-danger">{{ $errors->first('user_type') }}</span>
@@ -33,8 +36,8 @@
                                 <h5 class="card-title mb-0">First Name</h5>
                             </div>
                             <div class="card-body row">
-                                <input type="text" class="form-control input" placeholder="Firstname"
-                                    name="first_name" value="{{$user->first_name}}" />
+                                <input type="text" class="form-control input" placeholder="Firstname" name="first_name"
+                                    value="{{ $user->first_name }}" />
                                 @if ($errors->has('first_name'))
                                     <span class="text-danger">{{ $errors->first('first_name') }}</span>
                                 @endif
@@ -46,8 +49,8 @@
                                 <h5 class="card-title mb-0">Last Name</h5>
                             </div>
                             <div class="card-body row">
-                                <input type="text" class="form-control input" placeholder="Lastname" name="last_name" 
-                                value="{{$user->last_name}}" />
+                                <input type="text" class="form-control input" placeholder="Lastname" name="last_name"
+                                    value="{{ $user->last_name }}" />
                                 @if ($errors->has('last_name'))
                                     <span class="text-danger">{{ $errors->first('last_name') }}</span>
                                 @endif
@@ -59,8 +62,8 @@
                                 <h5 class="card-title mb-0">Email</h5>
                             </div>
                             <div class="card-body row">
-                                <input type="email" class="form-control input" placeholder="Email" name="email" 
-                                value="{{$user->email}}"/>
+                                <input type="email" class="form-control input" placeholder="Email" name="email"
+                                    value="{{ $user->email }}" />
                                 @if ($errors->has('email'))
                                     <span class="text-danger">{{ $errors->first('email') }}</span>
                                 @endif
@@ -72,8 +75,8 @@
                                 <h5 class="card-title mb-0">Phone</h5>
                             </div>
                             <div class="card-body row">
-                                <input type="text" class="form-control input" placeholder="Phone" name="phone" 
-                                value="{{$user->phone}}"/>
+                                <input type="text" class="form-control input" placeholder="Phone" name="phone"
+                                    value="{{ $user->phone }}" />
                                 @if ($errors->has('phone'))
                                     <span class="text-danger">{{ $errors->first('phone') }}</span>
                                 @endif

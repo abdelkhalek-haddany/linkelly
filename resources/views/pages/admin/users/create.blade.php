@@ -18,7 +18,9 @@
                             <div class="card-body row">
                                 <select name="user_type" id="user_type" class="input">
                                     <option value="user" selected>User</option>
-                                    <option value="admin">Admin</option>
+                                    @if (Auth::user()->user_type == 'super-admin')
+                                        <option value="admin">Admin</option>
+                                    @endif
                                 </select>
                                 @if ($errors->has('user_type'))
                                     <span class="text-danger">{{ $errors->first('user_type') }}</span>
@@ -95,8 +97,8 @@
                                 <h5 class="card-title mb-0">Password Confirmation</h5>
                             </div>
                             <div class="card-body row">
-                                <input type="password" class="form-control input"
-                                    placeholder="Password confirmation" name="password_confirmation" />
+                                <input type="password" class="form-control input" placeholder="Password confirmation"
+                                    name="password_confirmation" />
                                 @if ($errors->has('password_confirmation'))
                                     <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
                                 @endif

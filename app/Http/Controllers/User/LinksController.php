@@ -123,4 +123,54 @@ class LinksController extends Controller
         ]);
         return redirect()->route('links.index')->with(['success' => 'Status changed Successfully']);
     }
+
+
+
+
+
+
+
+    // This function takes a Linkid and then rotate over that link using the percentage of each destination 
+    public function rotate(string $slug){
+        try {
+            // $slug;
+            $link = Link::where('slug', '=', $slug)->first();
+        
+            // Check if the link exists
+            if (!$link) {
+                return redirect()->back()->with(["error"=>"no link found with id " . $slug]);
+            }
+
+            // Get all destinations for the link
+            $destinations = Distination::where('link_id', $link->id)->get();
+
+            // Check if there are destinations for the link
+            if ($destinations->isEmpty()) {
+                return "no destination found for link with id " . $link->id;
+            }
+
+            // Calculate total percentage
+            $totalPercentage = $destinations->sum('percentage');
+
+            // Generate a random number between 1 and the total percentage
+            $randomNumber = rand(1, $totalPercentage);
+
+            // Find the destination based on the random number
+            $currentPercentage = 0;
+            foreach ($destinations as $destination) {
+                $currentPercentage += $destination->percentage;
+                if ($randomNumber <= $currentPercentage) {
+                    // Redirect to the selected destination
+                    return redirect($destination->distination);
+                }
+            }
+            // If no destination is found, redirect to a default URL or handle accordingly
+            // return redirect()->back()->with(['error' => 'No destination found for the link']);
+            echo "Ooops! there is no destination" . $slug;
+        } catch (Exception $e) {
+            echo "Ooops! an error";
+            // return redirect()->back()->with(['error' => 'Oops! An error occurred']);
+        }
+    }
+
 }

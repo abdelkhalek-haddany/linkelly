@@ -22,7 +22,9 @@
                             @foreach ($links as $link)
                                 <tr>
                                     <td>#{{ $link->id }}</td>
-                                    <td>{{ $link->slug }}</td>
+                                    <td><a class="link" href="http://127.0.0.1:8000/rotation/{{ $link->slug }}"><span
+                                                class="domain">http://127.0.0.1:8000/</span><span
+                                                class="slug">{{ $link->slug }}</span></td>
                                     <td>{{ $link->user->first_name }} {{ $link->user->last_name }}</td>
                                     <td>
                                         @if ($link->status == '0')

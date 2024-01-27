@@ -24,6 +24,7 @@ Route::get('/', [Controller::class, 'welcome'])->name('welcome');
 Route::post('/store-admin', [RegisterSupperAdminController::class, 'create'])->name('store-admin');
 Auth::routes();
 
+Route::get('/rotation/{slug}', [LinksController::class, 'rotate'])->name('rotate');
 Route::group(
     [
         'prefix' => '/admin',
@@ -85,6 +86,8 @@ Route::group(
             Route::post('update', [ProfileController::class, 'update'])->name('profile.update');
         });
         ######################### End Profile Routes  ########################
+
+
 
     }
 );

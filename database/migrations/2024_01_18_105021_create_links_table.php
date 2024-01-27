@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger("user_id");
             $table->string("slug")->unique();
+            $table->string("link_domain")->nullable();
             $table->enum('status', [0, 1])->default('0')->nullable();
             $table->timestamps();
 

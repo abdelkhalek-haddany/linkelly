@@ -62,22 +62,23 @@
                 </a>
             </li> --}}
 
-            <li class="sidebar-header">
-                Users & Accounts
-            </li>
+            @if (Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'super-admin')
+                <li class="sidebar-header">
+                    Users & Accounts
+                </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="{{ route('users.index') }}">
-                    <i class="align-middle" data-feather="users"></i> <span class="align-middle">All users</span>
-                </a>
-            </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('users.index') }}">
+                        <i class="align-middle" data-feather="users"></i> <span class="align-middle">All users</span>
+                    </a>
+                </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="{{ route('users.create') }}">
-                    <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Add user</span>
-                </a>
-            </li>
-
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('users.create') }}">
+                        <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Add user</span>
+                    </a>
+                </li>
+            @endif
 
             <li class="sidebar-header">
                 Links
@@ -141,7 +142,7 @@
                 {{-- <div class="d-grid"> --}}
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
-                    <a type="submit" class="btn btn-primary" style="width:100%">Logout</a>
+                    <button type="submit" class="btn btn-primary" style="width:100%">Logout</button>
                 </form>
                 {{-- </div> --}}
             </div>

@@ -1,3 +1,9 @@
+.logout-btn {
+  border: none;
+  background-color: transparent;
+  color: #777;
+}
+
 .add-distination-btn {
   border: 2px solid transparent;
   background-color: #183258;
@@ -81,6 +87,13 @@
 }
 .options .dropdown-menu li i {
   margin-right: 12px;
+}
+
+.link .domain {
+  color: #888;
+}
+.link .slug {
+  color: #d74538;
 }
 
 /*# sourceMappingURL=style.css.map */

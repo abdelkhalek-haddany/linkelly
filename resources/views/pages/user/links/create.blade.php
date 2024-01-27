@@ -172,7 +172,7 @@
                 input.name = 'percentages[]';
             }
             input.classList.add("form-control", "input");
-            input.placeholder = 'url';
+            input.placeholder = placeholder;
             return input;
         }
 

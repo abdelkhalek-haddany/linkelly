@@ -44,7 +44,7 @@ class UsersController extends Controller
             //     $avatar = "";
             // }
             $user = new  User();
-            $user->first_first_name = $request->first_name;
+            $user->first_name = $request->first_name;
             $user->last_name = $request->last_name;
             $user->phone = $request->phone;
             $user->user_type = $request->user_type;
@@ -115,7 +115,6 @@ class UsersController extends Controller
         $user = User::find($id);
         if ($user) {
             $user->delete();
-            return true;
             return redirect()->route('users.index')->with(['success' => __('pages/admin/messages.deleted'), 200]);
         }
     }
