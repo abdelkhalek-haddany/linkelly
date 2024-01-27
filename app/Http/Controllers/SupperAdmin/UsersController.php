@@ -19,12 +19,12 @@ class UsersController extends Controller
     {
         if ($_GET) {
             if ($_GET['q']) {
-                $users  = User::whereNot('id', Auth::id())->whereNot('user_type', 'super-admin')->where('first_name', 'like', '%' . $_GET['q'] . '%')->orWhere('last_name', 'like', '%' . $_GET['q'] . '%')->get();
+                $users  = User::orderBy('created_at', 'DESC')->whereNot('id', Auth::id())->whereNot('user_type', 'super-admin')->where('first_name', 'like', '%' . $_GET['q'] . '%')->orWhere('last_name', 'like', '%' . $_GET['q'] . '%')->get();
             } else {
-                $users  = User::whereNot('id', Auth::id())->whereNot('user_type', 'super-admin')->get();
+                $users  = User::orderBy('created_at', 'DESC')->whereNot('id', Auth::id())->whereNot('user_type', 'super-admin')->get();
             }
         } else {
-            $users  = User::whereNot('id', Auth::id())->whereNot('user_type', 'super-admin')->get();
+            $users  = User::orderBy('created_at', 'DESC')->whereNot('id', Auth::id())->whereNot('user_type', 'super-admin')->get();
         }
 
         return view('pages.admin.users.index', ['users' => $users]);
@@ -38,26 +38,26 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         // try {
-            // if ($request->avatar) {
-            //     $avatar = UploadImage('uploads/users', $request->avatar);
-            // } else {
-            //     $avatar = "";
-            // }
-            $user = new  User();
-            $user->first_name = $request->first_name;
-            $user->last_name = $request->last_name;
-            $user->phone = $request->phone;
-            $user->user_type = $request->user_type;
-            $user->email = $request->email;
-            $user->password = Hash::make($request->password);
-            $user->save();
+        // if ($request->avatar) {
+        //     $avatar = UploadImage('uploads/users', $request->avatar);
+        // } else {
+        //     $avatar = "";
+        // }
+        $user = new  User();
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->phone = $request->phone;
+        $user->user_type = $request->user_type;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
 
-            // if (!Auth::check()) {
-            //     Auth::attempt(array('email' => $user->email, 'password' => $user->password));
-            //     $this->guard()->login($user);
-            //     return redirect()->route('welcome');
-            // }
-            return redirect()->route('users.index')->with(['success' => __('pages/admin/messages.saved')]);
+        // if (!Auth::check()) {
+        //     Auth::attempt(array('email' => $user->email, 'password' => $user->password));
+        //     $this->guard()->login($user);
+        //     return redirect()->route('welcome');
+        // }
+        return redirect()->route('users.index')->with(['success' => __('pages/admin/messages.saved')]);
         // } catch (\Exception $ex) {
         //     return redirect()->back()->with(['error' => __('pages/admin/messages.error')]);
         // }
@@ -73,26 +73,26 @@ class UsersController extends Controller
     public function update(Request $request, User $user)
     {
         // try {
-            if (!$user) return redirect()->back()->with(['error' => __('pages/admin/messages.error')]);
+        if (!$user) return redirect()->back()->with(['error' => __('pages/admin/messages.error')]);
 
-            // if ($request->avatar) {
-            //     $avatar = UploadImage('uploads/users', $request->avatar);
-            // } else {
-            //     $avatar = "";
-            // }
+        // if ($request->avatar) {
+        //     $avatar = UploadImage('uploads/users', $request->avatar);
+        // } else {
+        //     $avatar = "";
+        // }
 
-            $user->first_name = $request->first_name;
-            $user->last_name = $request->last_name;
-            $user->phone = $request->phone;
-            $user->user_type = $request->user_type;
-            // $user->avatar = $avatar;
-            // $user->slugID = Str::slug($request->name . '_' . now());
-            // $user->city = $request->city;
-            $user->email = $request->email;
-            if ($request->password != null)
-                $user->password = Hash::make($request->password);
-            $user->update();
-            return redirect()->route('users.index')->with(['success' => __('pages/admin/messages.updated')]);
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->phone = $request->phone;
+        $user->user_type = $request->user_type;
+        // $user->avatar = $avatar;
+        // $user->slugID = Str::slug($request->name . '_' . now());
+        // $user->city = $request->city;
+        $user->email = $request->email;
+        if ($request->password != null)
+            $user->password = Hash::make($request->password);
+        $user->update();
+        return redirect()->route('users.index')->with(['success' => __('pages/admin/messages.updated')]);
         // } catch (\Exception $ex) {
         //     return redirect()->back()->with(['error' => __('pages/admin/messages.error')]);
         // }

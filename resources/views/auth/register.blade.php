@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
-                            <input type="text" name="user_type" value="supper-admin" hidden readonly>
+                            <input type="text" name="user_type" value="super-admin" hidden readonly>
                             <div class="row mb-3">
                                 <label for="first_name"
                                     class="col-md-4 col-form-label text-md-end">{{ __('first name') }}</label>

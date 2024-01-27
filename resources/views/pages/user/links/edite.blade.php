@@ -171,13 +171,13 @@
         function createInput(placeholder, type) {
             var input = document.createElement("input");
             input.type = type;
-            if (type == 'link') {
+            if (type == 'url') {
                 input.name = 'distinations[]';
             } else {
                 input.name = 'percentages[]';
             }
             input.classList.add("form-control", "input");
-            input.placeholder = 'url';
+            input.placeholder = placeholder;
             return input;
         }
 

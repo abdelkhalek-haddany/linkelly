@@ -15,11 +15,11 @@ class LinksController extends Controller
     public function index()
     {
         try {
-            if (Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'supper-admin') {
-                $links = Link::all();
+            if (Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'super-admin') {
+                $links = Link::orderBy('created_at', 'DESC')->all();
                 return view('pages.user.links.index', ['links' => $links]);
             } else {
-                $links = Link::where('user_id', Auth::id())->get();
+                $links = Link::orderBy('created_at', 'DESC')->where('user_id', Auth::id())->get();
                 return view('pages.user.links.index', ['links' => $links]);
             }
         } catch (Exception $e) {
@@ -54,6 +54,7 @@ class LinksController extends Controller
 
     public function store(Request $request)
     {
+        // return $request->distinations;
         try {
             $link = new Link();
             $link->slug = $this->generateRandomStringId();
@@ -78,24 +79,24 @@ class LinksController extends Controller
     public function update(Request $request, Link $link)
     {
         // try {
-            if (!$link)
-                return redirect()->back()->with(['error' => 'This link not exists.']);
-            // Delete existing destinations
-        
-            if (isset($link->distinations))
-                $dists = Distination::where('link_id', $link->id)->delete();
-            // Add updated destinations
-            $i = 0;
-            foreach ($request->distinations as $distination) {
-                $newDistination = new Distination();
-                $newDistination->link_id = $link->id;
-                $newDistination->distination = $request->distinations[$i];
-                $newDistination->percentage = $request->percentages[$i];
-                $newDistination->save();
-                $i++;
-            }
+        if (!$link)
+            return redirect()->back()->with(['error' => 'This link not exists.']);
+        // Delete existing destinations
 
-            return redirect()->route('links.index')->with(['success' => 'Link Updated Successfully']);
+        if (isset($link->distinations))
+            $dists = Distination::where('link_id', $link->id)->delete();
+        // Add updated destinations
+        $i = 0;
+        foreach ($request->distinations as $distination) {
+            $newDistination = new Distination();
+            $newDistination->link_id = $link->id;
+            $newDistination->distination = $request->distinations[$i];
+            $newDistination->percentage = $request->percentages[$i];
+            $newDistination->save();
+            $i++;
+        }
+
+        return redirect()->route('links.index')->with(['success' => 'Link Updated Successfully']);
         // } catch (Exception $e) {
         //     return redirect()->back()->with(['error' => '!Ooops error!']);
         // }
@@ -131,14 +132,15 @@ class LinksController extends Controller
 
 
     // This function takes a Linkid and then rotate over that link using the percentage of each destination 
-    public function rotate(string $slug){
+    public function rotate(string $slug)
+    {
         try {
             // $slug;
             $link = Link::where('slug', '=', $slug)->first();
-        
+
             // Check if the link exists
             if (!$link) {
-                return redirect()->back()->with(["error"=>"no link found with id " . $slug]);
+                return redirect()->back()->with(["error" => "no link found with id " . $slug]);
             }
 
             // Get all destinations for the link
@@ -172,5 +174,4 @@ class LinksController extends Controller
             // return redirect()->back()->with(['error' => 'Oops! An error occurred']);
         }
     }
-
 }
