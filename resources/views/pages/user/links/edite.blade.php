@@ -4,9 +4,9 @@
     <main class="content">
         <div class="container-fluid p-0">
             <div class="mb-3">
-                <h1 class="h3 d-inline align-middle">Create link</h1>
+                <h1 class="h3 d-inline align-middle">Edit</h1>
             </div>
-            <form action="{{ route('links.store') }}" method="POST">
+            <form action="{{ route('links.update', $link) }}" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col-12">
@@ -24,27 +24,32 @@
                                     @endif
                                 </div>
                             </div> --}}
-
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 class="card-title mb-0">Distination 1</h5>
+                            @php $i =0; @endphp
+                            @foreach ($link->distinations as $distination)
+                                @php $i++; @endphp
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Distination {{ $i }}</h5>
+                                    </div>
+                                    <div class="card-body row">
+                                        <div class="col-lg-9 col-sm-8 col-12">
+                                            <input type="url" class="form-control input"
+                                                value="{{ $distination->distination }}" placeholder="url"
+                                                name="distinations[]" />
+                                        </div>
+                                        <div class="col-lg-2 col-sm-3 col-8">
+                                            <input type="number" class="form-control percentage-input input"
+                                                value="{{ $distination->percentage }}" placeholder="Percentage"
+                                                name="percentages[]" />
+                                        </div>
+                                        <div class="col-sm-1 col-4">
+                                            <button class="btn btn-danger input" type="button"
+                                                onclick="deleteInput(this.parentNode.parentNode.parentNode)"><i
+                                                    class="fas fa-trash"></i></button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-body row">
-                                    <div class="col-lg-9 col-sm-8 col-12">
-                                        <input type="url" class="form-control input" placeholder="url"
-                                            name="distinations[]" />
-                                    </div>
-                                    <div class="col-lg-2 col-sm-3 col-8">
-                                        <input type="number" class="form-control percentage-input input"
-                                            placeholder="Percentage" name="percentages[]" />
-                                    </div>
-                                    <div class="col-sm-1 col-4">
-                                        <button class="btn btn-danger input" type="button"
-                                            onclick="deleteInput(this.parentNode.parentNode)"><i
-                                                class="fas fa-trash"></i></button>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                         <div class="add-distination-container">
                             <button type="button" class="add-distination-btn" onclick="addInput()">Add

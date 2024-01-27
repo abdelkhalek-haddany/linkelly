@@ -9,6 +9,14 @@ class Distination extends Model
 {
     use HasFactory;
 
-    protected $table = 'distination';
+    protected $table = 'distinations';
     protected $guarded = [];
+
+
+    public function link(){
+        return $this->belongsTo(Link::class);
+    }
+    public function stats(){
+        return $this->hasMany(Stats::class);
+    }
 }

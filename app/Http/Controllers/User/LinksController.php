@@ -28,7 +28,8 @@ class LinksController extends Controller
     }
 
 
-    public function create(){
+    public function create()
+    {
         return view('pages.user.links.create');
     }
     function generateRandomStringId($length = 10)
@@ -44,28 +45,82 @@ class LinksController extends Controller
         return $stringId;
     }
 
+    public function edit(Link $link)
+    {
+        if (!$link)
+            return redirect()->back()->with(['error' => 'This link not exists.']);
+        return view('pages.user.links.edite', compact('link'));
+    }
+
     public function store(Request $request)
     {
         try {
             $link = new Link();
-            $link->name = $request->name;
-            $link->url = $request->url;
             $link->slug = $this->generateRandomStringId();
             $link->user_id = Auth::id();
-            $link->status = 0;
+            $link->status = '0';
             $link->save();
             $i = 0;
             foreach ($request->distinations as $distination) {
                 $distination = new Distination();
                 $distination->link_id = $link->id;
-                $distination->distination = $distination;
+                $distination->distination = $request->distinations[$i];
                 $distination->percentage = $request->percentages[$i];
                 $distination->save();
                 $i++;
             }
-            return redirect()->route('user.links.index')->with(['success' => 'Link Added Successfully']);
+            return redirect()->route('links.index')->with(['success' => 'Link Added Successfully']);
         } catch (Exception $e) {
-            return redirect()->back()->with(['error' => '!Ooops error!']);
+            return redirect()->route('links.index')->with(['error' => '!Ooops error!']);
         }
+    }
+
+    public function update(Request $request, Link $link)
+    {
+        // try {
+            if (!$link)
+                return redirect()->back()->with(['error' => 'This link not exists.']);
+            // Delete existing destinations
+        
+            if (isset($link->distinations))
+                $dists = Distination::where('link_id', $link->id)->delete();
+            // Add updated destinations
+            $i = 0;
+            foreach ($request->distinations as $distination) {
+                $newDistination = new Distination();
+                $newDistination->link_id = $link->id;
+                $newDistination->distination = $request->distinations[$i];
+                $newDistination->percentage = $request->percentages[$i];
+                $newDistination->save();
+                $i++;
+            }
+
+            return redirect()->route('links.index')->with(['success' => 'Link Updated Successfully']);
+        // } catch (Exception $e) {
+        //     return redirect()->back()->with(['error' => '!Ooops error!']);
+        // }
+    }
+
+    public function delete($id)
+    {
+        $link = Link::find($id);
+        if ($link) {
+            // if (isset($link->distinations->stats))
+            //     $link->distinations->stats->delete();
+            // if (isset($link->distinations))
+            //     $link->distinations->delete();
+            $link->delete();
+            return redirect()->route('links.index')->with(['success' => 'deleted successfully', 200]);
+        }
+    }
+
+
+    public function status($id)
+    {
+        $link = Link::where('id', $id)->get()->first();
+        $link->update([
+            'status' => $link->status != '0' ? '0' : '1',
+        ]);
+        return redirect()->route('links.index')->with(['success' => 'Status changed Successfully']);
     }
 }

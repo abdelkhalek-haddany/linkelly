@@ -19,6 +19,10 @@ class User extends Authenticatable
      */
     protected  $guarded = [];
 
+    public function links(){
+        return $this->hasMany(Link::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

@@ -19,7 +19,7 @@ class ProfileController extends Controller
             // $products = Product::where('vendor_id', Auth::id())->get()->all();
             return view('pages.admin.pages.profile.edit');
         } catch (\Exception $ex) {
-            return redirect()->route('profile.edit')->with(['error' => __('pages/admin/messages.error')]);
+            return redirect()->route('profile.edit')->with(['error' => 'deleted successfully']);
         }
     }
 
@@ -29,13 +29,13 @@ class ProfileController extends Controller
     }
     public function edit()
     {
-        try {
-            return view('pages.admin.pages.profile.edit');
-        } catch (\Exception $ex) {
-            return redirect()->route('profile.edit')->with(['error' => __('pages/admin/messages.error')]);
-        }
+        // try {
+            $user = User::where('id', Auth::id())->get()->first();
+            return view('pages.admin.profile.edit', compact('user'));
+        // } catch (\Exception $ex) {
+        //     return redirect()->route('profile.edit')->with(['error' => __('pages/admin/messages.error')]);
+        // }
     }
-
 
     public function avatar_update(ImageRequest $request)
     {
@@ -59,7 +59,7 @@ class ProfileController extends Controller
     public function update(ProfileUpdate $request)
     {
         // try {
-        $user = User::where('id', Auth::id())->get();
+        $user = User::where('id', Auth::id())->get()->first();
         if ($request->avatar) {
             $avatar = UploadImage($request->avatar, 'uploads/users');
         } else {

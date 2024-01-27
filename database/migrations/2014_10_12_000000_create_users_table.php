@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('avatar')->nullable();
             $table->string('first_name');
             $table->string('last_name');
-            $table->enum('user_type', [0, 1])->default(0);
+            $table->string('user_type')->default(0);
             $table->enum('status', [0, 1])->nullable();
             $table->string('email')->unique();
             $table->string('phone')->unique();

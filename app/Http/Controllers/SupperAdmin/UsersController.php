@@ -19,12 +19,12 @@ class UsersController extends Controller
     {
         if ($_GET) {
             if ($_GET['q']) {
-                $users  = User::whereNot('id', Auth::id())->whereNot('user_type', '4')->whereNot('user_type', '5')->where('name', 'like', '%' . $_GET['q'] . '%')->get();
+                $users  = User::whereNot('id', Auth::id())->whereNot('user_type', 'super-admin')->where('first_name', 'like', '%' . $_GET['q'] . '%')->orWhere('last_name', 'like', '%' . $_GET['q'] . '%')->get();
             } else {
-                $users  = User::whereNot('id', Auth::id())->whereNot('user_type', '4')->whereNot('user_type', '5')->get();
+                $users  = User::whereNot('id', Auth::id())->whereNot('user_type', 'super-admin')->get();
             }
         } else {
-            $users  = User::whereNot('id', Auth::id())->whereNot('user_type', '4')->whereNot('user_type', '5')->get();
+            $users  = User::whereNot('id', Auth::id())->whereNot('user_type', 'super-admin')->get();
         }
 
         return view('pages.admin.users.index', ['users' => $users]);
@@ -44,7 +44,7 @@ class UsersController extends Controller
             //     $avatar = "";
             // }
             $user = new  User();
-            $user->first_name = $request->first_name;
+            $user->first_first_name = $request->first_name;
             $user->last_name = $request->last_name;
             $user->phone = $request->phone;
             $user->user_type = $request->user_type;

@@ -24,9 +24,10 @@ class ProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
         ];
     }
 }

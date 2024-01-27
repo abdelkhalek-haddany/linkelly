@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("distination");
             $table->unsignedBigInteger("link_id")->nullable();
-            $table->double('persentage', 8, 2);
+            $table->double('percentage', 8, 2);
             $table->integer('distination_statistic_id')->nullable();
             $table->timestamps();
 

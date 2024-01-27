@@ -11,4 +11,15 @@ class Link extends Model
 
     protected $table = 'links';
     protected $guarded = [];
+
+
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+
+    public function distinations(){
+        return $this->hasMany(Distination::class);
+    }
 }

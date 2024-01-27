@@ -58,7 +58,7 @@ Route::group(
             Route::get('/edit{link}', [LinksController::class, 'edit'])->name('links.edit');
             Route::post('/store', [LinksController::class, 'store'])->name('links.store');
             Route::post('/update{link}', [LinksController::class, 'update'])->name('links.update');
-            Route::get('/status{link}{status}', [LinksController::class, 'status'])->name('links.status');
+            Route::get('/status{link}', [LinksController::class, 'status'])->name('links.status');
             Route::get('/delete{link}', [LinksController::class, 'delete'])->name('links.delete');
         });
         ######################### End  links Routes  ########################
