@@ -96,4 +96,48 @@
   color: #d74538;
 }
 
+.error-block {
+  padding: 10px;
+  border: 1px solid #d74538;
+  border-radius: 30px;
+  margin: 20px 0;
+  background-color: #ccc;
+  text-align: center;
+}
+.error-block .icon {
+  color: #d74538;
+  font-size: 50px;
+  display: block;
+}
+.error-block .message {
+  color: #d74538;
+  font-weight: bold;
+}
+
+.alert-message-wrapper {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 999;
+  padding: 20px 10px;
+  border-radius: 10px;
+}
+
+.alert-danger {
+  background-color: rgb(197, 66, 66);
+}
+
+.alert-success {
+  background-color: rgb(101, 244, 101);
+}
+
+.alert-message-close {
+  margin-left: 50px;
+  border-radius: 8px;
+  background-color: #ccc;
+  color: rgb(20, 19, 16);
+  font-weight: bold;
+  align-items: center;
+}
+
 /*# sourceMappingURL=style.css.map */

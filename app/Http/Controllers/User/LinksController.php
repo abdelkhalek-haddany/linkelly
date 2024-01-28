@@ -16,7 +16,7 @@ class LinksController extends Controller
     {
         try {
             if (Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'super-admin') {
-                $links = Link::orderBy('created_at', 'DESC')->all();
+                $links = Link::orderBy('created_at', 'DESC')->get();
                 return view('pages.user.links.index', ['links' => $links]);
             } else {
                 $links = Link::orderBy('created_at', 'DESC')->where('user_id', Auth::id())->get();

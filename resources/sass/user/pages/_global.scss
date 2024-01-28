@@ -1,0 +1,22 @@
+.alert-message-wrapper {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 999;
+    padding: 20px 10px;
+    border-radius: 10px;
+}
+.alert-danger{
+    background-color: rgb(197, 66, 66);
+}
+.alert-success{
+    background-color: rgb(101, 244, 101);
+}
+.alert-message-close {
+    margin-left: 50px;
+    border-radius: 8px;
+    background-color: #ccc;
+    color: rgb(20, 19, 16);
+    font-weight: bold;
+    align-items: center;
+}

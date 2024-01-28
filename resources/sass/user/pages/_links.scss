@@ -99,11 +99,28 @@
     }
 }
 
-.link{
-    .domain{
+.link {
+    .domain {
         color: #888;
     }
-    .slug{
+    .slug {
         color: #d74538;
+    }
+}
+.error-block {
+    padding: 10px;
+    border: 1px solid #d74538;
+    border-radius: 30px;
+    margin: 20px 0;
+    background-color: #ccc;
+    text-align: center;
+    .icon {
+        color: #d74538;
+        font-size: 50px;
+        display: block;
+    }
+    .message {
+        color: #d74538;
+        font-weight: bold;
     }
 }
