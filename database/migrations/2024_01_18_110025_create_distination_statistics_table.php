@@ -14,9 +14,16 @@ return new class extends Migration
         Schema::create('distination_statistics', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("distination_id");
-            $table->string('country');
-            $table->string('device');
-            $table->string('browser');
+            $table->string('country')->nullable();
+            $table->string('city')->nullable();
+            $table->string('platform')->nullable();
+            $table->string('is_robot')->nullable();
+            $table->string('is_desktop')->nullable();
+            $table->string('is_tablet')->nullable();
+            $table->string('is_mobile')->nullable();
+            $table->string('browser')->nullable();
+            $table->string('browser_version')->nullable();
+            $table->string('languages')->nullable();
             $table->timestamps();
 
             $table->foreign('distination_id')

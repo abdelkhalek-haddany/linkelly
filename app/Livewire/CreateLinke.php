@@ -12,13 +12,21 @@ class CreateLinke extends Component
     public $destinations = [];
     public $linkId; // New property to store the generated link ID
     public $selectedDomain;
+    public $isUnique = false;
 
     public function mount()
     {
         // Initialize with one empty destination input
         $this->destinations[] = ['url' => '', 'percentage' => ''];
         // Generate the link ID during page load
-        $this->linkId = $this->generateRandomStringId();
+
+        while (!$this->isUnique) {
+            $this->linkId = $this->generateRandomStringId();
+            $links = Link::where("slug", $this->linkId)->get();
+            if (sizeof($links)==0) {
+                $this->isUnique = true;
+            }
+        }
     }
 
     public function addDestination()

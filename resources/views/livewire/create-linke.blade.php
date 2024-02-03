@@ -46,6 +46,7 @@
                 <select id="selectedDomain" wire:model="selectedDomain" class="form-control">
                     <option value="https://hello.com">https://hello.com/{{ $linkId }}</option>
                     <option value="https://example.com">https://example.com/{{ $linkId }}</option>
+                    <option value="https://test.com">https://test.com/{{ $linkId }}</option>
                 </select>
             </div>
         </div>

@@ -34,6 +34,11 @@
                                         @endif
                                     </td>
                                     <td>
+
+                                        <a class="btn btn-success" href="">
+                                            <i class="fa-solid fa-info"></i><span> Details</span>
+                                        </a>
+
                                         <a class="btn btn-info" href="{{ route('links.edit', $link->id) }}">
                                             <i class="fa-solid fa-user-pen"></i><span> Edit</span>
                                         </a>

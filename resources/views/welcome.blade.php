@@ -113,8 +113,6 @@
                     sendUserInfoToServer(userInfoWithoutGeolocation);
                 });
         }
-
-        // Call the getUserInfo function when needed, e.g., when the page loads
         getUserInfo();
     </script>
 </body>
