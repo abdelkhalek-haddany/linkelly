@@ -23,7 +23,7 @@
                                 <tr>
                                     <td>#{{ $link->id }}</td>
                                     <td><a class="link" href="http://127.0.0.1:8000/rotation/{{ $link->slug }}"><span
-                                                class="domain">{{$link->link_domain}}/</span><span
+                                                class="domain">{{ $link->link_domain }}/</span><span
                                                 class="slug">{{ $link->slug }}</span></td>
                                     <td>{{ $link->user->first_name }} {{ $link->user->last_name }}</td>
                                     <td>
@@ -34,26 +34,28 @@
                                         @endif
                                     </td>
                                     <td>
+                                        <div class="actions-button">
 
-                                        <a class="btn btn-success" href="">
-                                            <i class="fa-solid fa-info"></i><span> Details</span>
-                                        </a>
+                                            <a class="btn custom-btn" href="{{ route('links.details', $link->id) }}">
+                                                <i class="fa-solid fa-info"></i><span> Details</span>
+                                            </a>
 
-                                        <a class="btn btn-info" href="{{ route('links.edit', $link->id) }}">
-                                            <i class="fa-solid fa-user-pen"></i><span> Edit</span>
-                                        </a>
-                                        <a class="btn btn-danger" href="{{ route('links.delete', $link->id) }}">
-                                            <i class="fa-solid fa-trash"></i><span> Delete</span>
-                                        </a>
-                                        @if ($link->status == '0')
-                                            <a class="btn btn-warning" href="{{ route('links.status', $link->id) }}">
-                                                <i class="fa-solid fa-ban"></i><span> Inactivate</span>
+                                            <a class="btn custom-btn" href="{{ route('links.edit', $link->id) }}">
+                                                <i class="fa-solid fa-user-pen"></i><span> Edit</span>
                                             </a>
-                                        @else
-                                            <a class="btn btn-warning" href="{{ route('links.status', $link->id) }}">
-                                                <i class="fa-solid fa-check"></i><span> Activate</span>
+                                            <a class="btn custom-btn" href="{{ route('links.delete', $link->id) }}">
+                                                <i class="fa-solid fa-trash"></i><span> Delete</span>
                                             </a>
-                                        @endif
+                                            @if ($link->status == '0')
+                                                <a class="btn custom-btn" href="{{ route('links.status', $link->id) }}">
+                                                    <i class="fa-solid fa-ban"></i><span> Inactivate</span>
+                                                </a>
+                                            @else
+                                                <a class="btn custom-btn" href="{{ route('links.status', $link->id) }}">
+                                                    <i class="fa-solid fa-check"></i><span> Activate</span>
+                                                </a>
+                                            @endif
+                                        </div>
                                     </td>
                                     {{-- <td class="options">
                                         <li class="dropdown">

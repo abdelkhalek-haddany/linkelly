@@ -9,6 +9,6 @@ class Stats extends Model
 {
     use HasFactory;
 
-    protected $table = 'links';
+    protected $table = 'distination_statistics';
     protected $guarded = [];
 }

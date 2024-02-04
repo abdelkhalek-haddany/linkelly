@@ -1,6 +1,22 @@
 <!-- resources/views/livewire/link-form.blade.php -->
 
 <div>
+    @if ($error = Session::get('error'))
+        {{-- <div class="error-block">
+            <span class="icon"><i class="fa-solid fa-circle-exclamation"></i></span>
+            <span class="message">{{ $error }}</span>
+        </div> --}}
+
+        <div class="message-container">
+            <div class="message-heading">
+                Error
+            </div>
+            <div class="message-description">
+                {{ $error }}
+            </div>
+        </div>
+    @endif
+
     @foreach ($destinations as $index => $destination)
         <div class="card" wire:ignore>
             <div class="card-header">
@@ -51,14 +67,6 @@
             </div>
         </div>
     </div>
-
-    @if ($error = Session::get('error'))
-        <div class="error-block">
-            <span class="icon"><i class="fa-solid fa-circle-exclamation"></i></span>
-            <span class="message">{{ $error }}</span>
-        </div>
-    @endif
-
     <div class="form-actions">
         <button type="button" class="btn btn-warning" wire:click="cancelForm">Cancel</button>
         <button type="button" class="btn btn-primary" wire:click="submitForm">Submit</button>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Distination;
 use App\Models\Link;
+use App\Models\Stats;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +27,20 @@ class LinksController extends Controller
             return redirect()->back()->with(['error' => '!Ooops error!']);
         }
     }
+
+
+
+    public function details($id)
+    {
+        $distinations = Distination::where('link_id', $id)->get();
+        $ids = [];
+        foreach ($distinations as $destination) {
+            $ids[] = $destination->id;
+        }
+        $stats = Stats::whereIn('distination_id', $ids)->get();
+        return view("pages.user.links.details", compact('stats'));
+    }
+
 
 
     public function create()

@@ -99,10 +99,12 @@
 .error-block {
   padding: 10px;
   border: 1px solid #d74538;
-  border-radius: 30px;
+  border-radius: 20px;
   margin: 20px 0;
-  background-color: #ccc;
+  background-color: transparent;
   text-align: center;
+  display: flex;
+  justify-content: space-between;
 }
 .error-block .icon {
   color: #d74538;
@@ -111,6 +113,48 @@
 }
 .error-block .message {
   color: #d74538;
+  font-weight: bold;
+}
+
+.message-container {
+  background: #ffeded;
+  padding: 20px;
+  margin-bottom: 30px;
+  border: 2px solid #ff0005;
+  border-radius: 10px;
+}
+.message-container .message-heading {
+  color: #ff0005;
+  font-family: "Effra";
+  font-size: 20px;
+  font-weight: bold;
+  line-heigh: 32px;
+  margin-bottom: 8px;
+  text-align: left;
+  font-weight: bold;
+}
+.message-container .message-description {
+  font-family: "Effra";
+  font-size: 16px;
+  line-height: 19px;
+  height: 38px;
+  line-heigh: 32px;
+  color: #ff0000;
+}
+
+.actions-button {
+  display: flex;
+}
+.actions-button .custom-btn {
+  margin: 0;
+  border-radius: 0;
+  border: 1px solid #ccc;
+  margin-right: -0.5px;
+}
+.actions-button .custom-btn:hover {
+  background-color: rgba(24, 50, 88, 0.1);
+}
+.actions-button .custom-btn i {
   font-weight: bold;
 }
 

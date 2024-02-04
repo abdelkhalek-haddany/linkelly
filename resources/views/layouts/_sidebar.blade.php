@@ -9,8 +9,8 @@
                 Pages
             </li>
 
-            <li class="sidebar-item active">
-                <a class="sidebar-link" href="index.html">
+            <li class="sidebar-item @if (Route::is('dashboard')) active @endif">
+                <a class="sidebar-link" href="{{route("dashboard")}}">
                     <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
                 </a>
             </li>
@@ -21,7 +21,7 @@
                 </a>
             </li> --}}
 
-            <li class="sidebar-item">
+            <li class="sidebar-item @if (Route::is('profile.edit')) active @endif">
                 <a class="sidebar-link" href="{{ route('profile.edit') }}">
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
                 </a>
@@ -67,13 +67,13 @@
                     Users & Accounts
                 </li>
 
-                <li class="sidebar-item">
+                <li class="sidebar-item @if (Route::is('users.index')) active @endif">
                     <a class="sidebar-link" href="{{ route('users.index') }}">
                         <i class="align-middle" data-feather="users"></i> <span class="align-middle">All users</span>
                     </a>
                 </li>
 
-                <li class="sidebar-item">
+                <li class="sidebar-item @if (Route::is('users.create')) active @endif">
                     <a class="sidebar-link" href="{{ route('users.create') }}">
                         <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Add user</span>
                     </a>
@@ -84,13 +84,13 @@
                 Links
             </li>
 
-            <li class="sidebar-item">
+            <li class="sidebar-item @if (Route::is('links.index')) active @endif">
                 <a class="sidebar-link" href="{{ route('links.index') }}">
                     <i class="align-middle" data-feather="link"></i> <span class="align-middle">All links</span>
                 </a>
             </li>
 
-            <li class="sidebar-item">
+            <li class="sidebar-item @if (Route::is('links.create')) active @endif">
                 <a class="sidebar-link" href="{{ route('links.create') }}">
                     <i class="align-middle" data-feather="plus"></i> <span class="align-middle">Add link</span>
                 </a>

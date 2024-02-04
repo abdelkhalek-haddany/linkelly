@@ -56,6 +56,7 @@ Route::group(
         Route::group(['prefix' => 'links'], function () {
             Route::get('/', [LinksController::class, 'index'])->name('links.index');
             Route::get('/create', [LinksController::class, 'create'])->name('links.create');
+            Route::get('/details{id}', [LinksController::class, 'details'])->name('links.details');
             Route::get('/edit{link}', [LinksController::class, 'edit'])->name('links.edit');
             Route::post('/store', [LinksController::class, 'store'])->name('links.store');
             Route::post('/update{link}', [LinksController::class, 'update'])->name('links.update');
