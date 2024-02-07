@@ -168,3 +168,37 @@
         }
     }
 }
+
+.details {
+    .stats {
+        margin-top: 30px;
+        .actions {
+            background-color: #eee;
+            color: #555;
+            display: flex;
+            justify-content: start;
+            font-weight: bold;
+            .action {
+                padding: 15px 25px;
+                cursor: pointer;
+                border: none;
+                bqckground-color: transparent;
+                &:hover {
+                    background-color: #fff;
+                }
+            }
+
+            .active {
+                background-color: #fff;
+            }
+        }
+
+        .actions-content {
+            background-color: #fff;
+            padding: 40px 10px;
+            .details-content {
+                display: none;
+            }
+        }
+    }
+}

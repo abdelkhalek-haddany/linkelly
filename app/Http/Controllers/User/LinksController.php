@@ -38,7 +38,12 @@ class LinksController extends Controller
             $ids[] = $destination->id;
         }
         $stats = Stats::whereIn('distination_id', $ids)->get();
-        return view("pages.user.links.details", compact('stats'));
+
+        // $stats = json_encode($stats);
+
+        return view("pages.user.links.details")->with([
+            'stats' => $stats,
+        ]);
     }
 
 

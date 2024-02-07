@@ -158,6 +158,36 @@
   font-weight: bold;
 }
 
+.details .stats {
+  margin-top: 30px;
+}
+.details .stats .actions {
+  background-color: #eee;
+  color: #555;
+  display: flex;
+  justify-content: start;
+  font-weight: bold;
+}
+.details .stats .actions .action {
+  padding: 15px 25px;
+  cursor: pointer;
+  border: none;
+  bqckground-color: transparent;
+}
+.details .stats .actions .action:hover {
+  background-color: #fff;
+}
+.details .stats .actions .active {
+  background-color: #fff;
+}
+.details .stats .actions-content {
+  background-color: #fff;
+  padding: 40px 10px;
+}
+.details .stats .actions-content .details-content {
+  display: none;
+}
+
 .alert-message-wrapper {
   position: fixed;
   bottom: 10px;
