@@ -188,6 +188,18 @@
   display: none;
 }
 
+.copy-link-btn {
+  display: inline-block;
+  border: 1px solid #183258;
+  color: #183258;
+  border-radius: 5px;
+  width: 40px;
+}
+.copy-link-btn:hover {
+  background-color: #183258;
+  color: #fff;
+}
+
 .alert-message-wrapper {
   position: fixed;
   bottom: 10px;

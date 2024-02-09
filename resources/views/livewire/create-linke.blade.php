@@ -60,9 +60,9 @@
         <div class="card-body row">
             <div class="col-lg-9 col-sm-8 col-6">
                 <select id="selectedDomain" wire:model="selectedDomain" class="form-control">
-                    <option value="https://hello.com">https://hello.com/{{ $linkId }}</option>
-                    <option value="https://example.com">https://example.com/{{ $linkId }}</option>
-                    <option value="https://test.com">https://test.com/{{ $linkId }}</option>
+                    @foreach (Domains() as $domain)
+                        <option value="{{ $domain->domain }}">{{ $domain->domain }}/{{ $linkId }}</option>
+                    @endforeach
                 </select>
             </div>
         </div>

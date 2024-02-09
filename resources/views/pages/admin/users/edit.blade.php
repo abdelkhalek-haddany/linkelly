@@ -4,7 +4,7 @@
     <main class="content">
         <div class="container-fluid p-0">
             <div class="mb-3">
-                <h1 class="h3 d-inline align-middle">Create User</h1>
+                <h1 class="h3 d-inline align-middle">Edit User</h1>
             </div>
 
             <form action="{{ route('users.update', $user) }}" method="POST">

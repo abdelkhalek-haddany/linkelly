@@ -63,6 +63,22 @@
             </li> --}}
 
             @if (Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'super-admin')
+            <li class="sidebar-header">
+                Domains
+            </li>
+
+            <li class="sidebar-item @if (Route::is('domains.index')) active @endif">
+                <a class="sidebar-link" href="{{ route('domains.index') }}">
+                    <i class="align-middle" data-feather="link"></i> <span class="align-middle">All Domains</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item @if (Route::is('domains.create')) active @endif">
+                <a class="sidebar-link" href="{{ route('domains.create') }}">
+                    <i class="align-middle" data-feather="plus"></i> <span class="align-middle">Add Domain</span>
+                </a>
+            </li>
+
                 <li class="sidebar-header">
                     Users & Accounts
                 </li>

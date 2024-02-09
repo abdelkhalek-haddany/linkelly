@@ -22,9 +22,20 @@
                             @foreach ($links as $link)
                                 <tr>
                                     <td>#{{ $link->id }}</td>
-                                    <td><a class="link" href="http://127.0.0.1:8000/rotation/{{ $link->slug }}"><span
-                                                class="domain">{{ $link->link_domain }}/</span><span
-                                                class="slug">{{ $link->slug }}</span></td>
+                                    <td>
+                                        <div class="link-container">
+                                            <!-- Copy Link Button -->
+                                            <button class="btn custom-btn copy-link-btn"
+                                                data-link="{{ $link->link_domain }}/{{ $link->slug }}">
+                                                <i class="fa-solid fa-copy"></i>
+                                                {{-- <span> Copy Link</span> --}}
+                                            </button>
+                                            <a class="link" href="{{ $link->link_domain }}/{{ $link->slug }}">
+                                                <span class="domain">{{ $link->link_domain }}/</span>
+                                                <span class="slug">{{ $link->slug }}</span>
+                                            </a>
+                                        </div>
+                                    </td>
                                     <td>{{ $link->user->first_name }} {{ $link->user->last_name }}</td>
                                     <td>
                                         @if ($link->status == '0')
@@ -99,6 +110,24 @@
                     ordering: true,
                     // Additional options and configurations can be added here
                 });
+
+                // Copy Link Button Click Event
+                $('.copy-link-btn').on('click', function() {
+                    var linkToCopy = $(this).data('link');
+                    copyToClipboard(linkToCopy);
+                });
+
+                // Function to copy text to clipboard
+                function copyToClipboard(text) {
+                    var input = document.createElement('textarea');
+                    input.value = text;
+                    document.body.appendChild(input);
+                    input.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(input);
+                    // Optionally, you can show a notification or perform any other action after copying.
+                    alert('Link copied to clipboard!');
+                }
             });
         </script>
     </main>

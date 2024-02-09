@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Domain;
 use Illuminate\Support\Facades\Config;
 
 function _setSession($name, $value)
@@ -42,4 +43,10 @@ function UploadImages($images, $folder, $merge = false)
   }
   $imagesField = implode(',', $imagesNames);
   return $imagesField;
+}
+
+function Domains()
+{
+  $domains = Domain::where('status', '1')->get();
+  return $domains;
 }

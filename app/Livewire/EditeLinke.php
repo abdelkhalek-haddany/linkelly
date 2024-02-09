@@ -11,10 +11,12 @@ class EditeLinke extends Component
 {
     public $link;
     public $destinations = [];
+    public $linkId;
 
     public function mount(Link $link)
     {
         $this->link = $link;
+        $this->linkId = $link->slug;
 
         // Populate destinations array with existing values
         foreach ($this->link->distinations as $destination) {
@@ -60,6 +62,9 @@ class EditeLinke extends Component
             }
 
             // Delete existing destinations
+            $this->link->slug = $this->linkID;
+            $this->link->link_domain = $this->selectedDomain;
+            $this->save();
             $this->link->distinations()->delete();
 
             // Add updated destinations

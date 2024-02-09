@@ -202,3 +202,15 @@
         }
     }
 }
+
+.copy-link-btn {
+    display: inline-block;
+    border: 1px solid $mainColor;
+    color: $mainColor;
+    border-radius: 5px;
+    width: 40px;
+    &:hover{
+        background-color: $mainColor;
+        color: #fff;
+    }
+}

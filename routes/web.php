@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Auth\RegisterSupperAdminController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\DomainsController;
 use App\Http\Controllers\SupperAdmin\UsersController;
 use App\Http\Controllers\User\LinksController;
 use Illuminate\Support\Facades\Auth;
@@ -48,6 +49,19 @@ Route::group(
             Route::get('/delete{user}', [UsersController::class, 'delete'])->name('users.delete');
         });
         ######################### End  users Routes  ########################
+
+
+        ######################### Start  domains Routes  ########################
+        Route::group(['prefix' => 'domains'], function () {
+            Route::get('/', [DomainsController::class, 'index'])->name('domains.index');
+            Route::get('/create', [DomainsController::class, 'create'])->name('domains.create');
+            Route::get('/edit{domain}', [DomainsController::class, 'edit'])->name('domains.edit');
+            Route::post('/store', [DomainsController::class, 'store'])->name('domains.store');
+            Route::post('/update{domain}', [DomainsController::class, 'update'])->name('domains.update');
+            Route::get('/status{domain}{status}', [DomainsController::class, 'status'])->name('domains.status');
+            Route::get('/delete{domain}', [DomainsController::class, 'delete'])->name('domains.delete');
+        });
+        ######################### End  domains Routes  ########################
 
 
 
