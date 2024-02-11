@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('is_tablet')->nullable();
             $table->string('is_mobile')->nullable();
             $table->string('browser')->nullable();
+            $table->string('device')->nullable();
+            $table->string('longitude')->nullable();
+            $table->string('latitude')->nullable();
             $table->string('browser_version')->nullable();
             $table->string('languages')->nullable();
             $table->timestamps();

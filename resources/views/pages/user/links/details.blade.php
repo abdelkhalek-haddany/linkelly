@@ -31,10 +31,12 @@
             // Replace the static data with your dynamic data
             // var stats = <?php echo $stats; ?>;
             var stats = <?php echo json_encode($stats); ?>;
-            console.log(stats);
 
-            var data = google.visualization.arrayToDataTable(processData(stats));
-
+            if (stats > 0) {
+                var data = google.visualization.arrayToDataTable(processData(stats));
+            } else {
+                data = google.visualization.arrayToDataTable([]);
+            }
             var options = {
                 title: 'Daily Link Click',
                 curveType: 'function',

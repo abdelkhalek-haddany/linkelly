@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use App\Models\Distination;
 use App\Models\Link;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class EditeLinke extends Component
