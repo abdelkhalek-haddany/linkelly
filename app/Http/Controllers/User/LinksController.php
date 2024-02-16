@@ -28,8 +28,6 @@ class LinksController extends Controller
         }
     }
 
-
-
     public function details($id)
     {
         $distinations = Distination::where('link_id', $id)->get();
@@ -40,10 +38,15 @@ class LinksController extends Controller
         $stats = Stats::whereIn('distination_id', $ids)->get();
 
         // $stats = json_encode($stats);
-
-        return view("pages.user.links.details")->with([
-            'stats' => $stats,
-        ]);
+        if (count($stats) > 0) {
+            return view("pages.user.links.details")->with([
+                'stats' => $stats,
+            ]);
+        } else {
+            return view("pages.user.links.details")->with([
+                'stats' => [],
+            ]);
+        }
     }
 
 

@@ -10,10 +10,14 @@
 
         function processData(stats) {
             var dailyCounts = {};
+            console.log("test 1");
+            console.log(stats);
             // Process the stats data to count distributions per day
             stats.forEach(function(entry) {
                 var date = entry.created_at.split('T')[0]; // Extracting the date part
                 dailyCounts[date] = (dailyCounts[date] || 0) + 1;
+                console.log("see the data");
+                console.log(dailyCounts);
             });
 
             // Convert the processed data to an array for Google Charts
@@ -31,12 +35,11 @@
             // Replace the static data with your dynamic data
             // var stats = <?php echo $stats; ?>;
             var stats = <?php echo json_encode($stats); ?>;
-
-            if (stats > 0) {
-                var data = google.visualization.arrayToDataTable(processData(stats));
-            } else {
-                data = google.visualization.arrayToDataTable([]);
-            }
+            // if (stats > 0) {
+            var data = google.visualization.arrayToDataTable(processData(stats));
+            // } else {
+            //     data = google.visualization.arrayToDataTable([]);
+            // }
             var options = {
                 title: 'Daily Link Click',
                 curveType: 'function',
@@ -117,7 +120,7 @@
                         <button class="action">Platform</button>
                         <button class="action">Device</button>
                         <button class="action">Browser</button>
-                        <button class="action">Export Data</button>
+                        {{--  <button class="action">Export Data</button> --}}
                     </div>
                     <div class="actions-content">
                         @include('pages.user.links.details.country')
