@@ -17,6 +17,20 @@
         </div>
     @endif
 
+    <div class="card" wire:ignore>
+        <div class="card-header">
+            <h5 class="card-title mb-0">Name</h5>
+        </div>
+        <div class="card-body row">
+            <div class="col-sm-12">
+                <input type="text" class="form-control input" placeholder="Name" name="name" wire:model="name" />
+                @if ($errors->has('name'))
+                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                @endif
+            </div>
+        </div>
+    </div>
+
     @foreach ($destinations as $index => $destination)
         <div class="card" wire:ignore>
             <div class="card-header">
@@ -59,7 +73,7 @@
 
         <div class="card-body row">
             <div class="col-lg-9 col-sm-8 col-6">
-                <select id="selectedDomain" wire:model="selectedDomain" class="form-control">
+                <select id="selectedDomain" name="selectedDomain" wire:model="selectedDomain" class="form-control">
                     @foreach (Domains() as $domain)
                         <option value="{{ $domain->domain }}">{{ $domain->domain }}/{{ $linkId }}</option>
                     @endforeach

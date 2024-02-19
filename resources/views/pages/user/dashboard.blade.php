@@ -22,7 +22,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <h1 class="mt-1 mb-3">{{App/Models/Link::get()}}</h1>
+                                        <h1 class="mt-1 mb-3">{{App\Models\Link::count()}}</h1>
                                         <div class="mb-0">
                                             <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -3.65%
                                             </span>

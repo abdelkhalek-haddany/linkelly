@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('links', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("user_id");
+            $table->string("name");
             $table->string("slug")->unique();
             $table->string("link_domain")->nullable();
             $table->enum('status', [0, 1])->default('0')->nullable();

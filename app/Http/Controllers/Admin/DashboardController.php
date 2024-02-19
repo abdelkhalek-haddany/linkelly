@@ -23,7 +23,7 @@ class DashboardController extends Controller
                 if (Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'super-admin') {
                     return view('pages.admin.dashboard', compact('browsers', 'monthlyStats', 'monthlyUsers', 'data'));
                 } else {
-                    return view('pages.user.dashboard');
+                    return redirect()->route('links.index');
                 }
             } else {
                 return redirect()->route('login');

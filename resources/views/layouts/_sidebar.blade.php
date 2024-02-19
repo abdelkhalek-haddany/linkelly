@@ -9,12 +9,13 @@
                 Pages
             </li>
 
-            <li class="sidebar-item @if (Route::is('dashboard')) active @endif">
-                <a class="sidebar-link" href="{{ route('dashboard') }}">
-                    <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
-                </a>
-            </li>
-
+            @if (Auth::user()->user_type != 'user')
+                <li class="sidebar-item @if (Route::is('dashboard')) active @endif">
+                    <a class="sidebar-link" href="{{ route('dashboard') }}">
+                        <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+                    </a>
+                </li>
+            @endif
             {{-- <li class="sidebar-item">
                 <a class="sidebar-link" href="">
                     <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Statistics</span>

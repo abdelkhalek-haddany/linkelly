@@ -11,12 +11,15 @@ class EditeLinke extends Component
     public $link;
     public $destinations = [];
     public $linkId;
+    public $name;
+    public $selectedDomain;
 
     public function mount(Link $link)
     {
         $this->link = $link;
         $this->linkId = $link->slug;
-
+        $this->name = $link->name;
+        $this->selectedDomain = $link->link_domain;
         // Populate destinations array with existing values
         foreach ($this->link->distinations as $destination) {
             $this->destinations[] = [
@@ -49,39 +52,40 @@ class EditeLinke extends Component
 
     public function submitForm()
     {
-        try {
-            // Validate that the sum of percentages does not exceed 100%
-            $totalPercentage = array_reduce($this->destinations, function ($carry, $destination) {
-                return $carry + (float)$destination['percentage'];
-            }, 0);
+        // try {
+        // Validate that the sum of percentages does not exceed 100%
+        $totalPercentage = array_reduce($this->destinations, function ($carry, $destination) {
+            return $carry + (float)$destination['percentage'];
+        }, 0);
 
-            if ($totalPercentage > 100) {
-                session()->flash('error', 'The sum of percentages cannot exceed 100%.');
-                return;
-            }
-
-            // Delete existing destinations
-            $this->link->slug = $this->linkID;
-            $this->link->link_domain = $this->selectedDomain;
-            $this->save();
-            $this->link->distinations()->delete();
-
-            // Add updated destinations
-            foreach ($this->destinations as $destination) {
-                $newDistination = new Distination();
-                $newDistination->link_id = $this->link->id;
-                $newDistination->distination = $destination['url'];
-                $newDistination->percentage = $destination['percentage'];
-                $newDistination->save();
-            }
-
-            // Redirect or show a success message
-            session()->flash('success', 'Link updated successfully!');
-            return redirect()->route('links.index');
-        } catch (\Exception $e) {
-            // Handle the exception if needed
-            session()->flash('error', 'Oops, an error occurred!');
+        if ($totalPercentage > 100) {
+            session()->flash('error', 'The sum of percentages cannot exceed 100%.');
+            return;
         }
+        // $link = Link::where("id", $this->link->id)->get()->first();
+        // Delete existing destinations
+        $this->link->name = $this->name;
+        $this->link->slug = $this->linkId;
+        $this->link->link_domain = $this->selectedDomain;
+        $this->link->save();
+        $this->link->distinations()->delete();
+
+        // Add updated destinations
+        foreach ($this->destinations as $destination) {
+            $newDistination = new Distination();
+            $newDistination->link_id = $this->link->id;
+            $newDistination->distination = $destination['url'];
+            $newDistination->percentage = $destination['percentage'];
+            $newDistination->save();
+        }
+
+        // Redirect or show a success message
+        session()->flash('success', 'Link updated successfully!');
+        return redirect()->route('links.index');
+        // } catch (\Exception $e) {
+        //     // Handle the exception if needed
+        //     session()->flash('error', 'Oops, an error occurred!');
+        // }
     }
 
     public function render()

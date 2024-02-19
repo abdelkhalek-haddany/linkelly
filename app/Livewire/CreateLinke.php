@@ -13,6 +13,7 @@ class CreateLinke extends Component
     public $linkId; // New property to store the generated link ID
     public $selectedDomain;
     public $isUnique = false;
+    public $name;
 
     public function mount()
     {
@@ -64,6 +65,7 @@ class CreateLinke extends Component
             }
 
             $link = new Link();
+            $link->name = $this->name;
             $link->slug = $this->linkId; // Use the generated link ID
             $link->link_domain = $this->selectedDomain;
             $link->user_id = Auth::id();
